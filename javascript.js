@@ -1,4 +1,11 @@
 const choice = ['rock', 'paper', 'scissors'];
+let playerScore = 0;
+let computerScore = 0;
+
+const score = document.querySelector('h2');
+const buttons = document.querySelectorAll('button');
+const container = document.querySelector('#container');
+    
 
 function computerPlay() {
     let selection = Math.floor(Math.random()*choice.length);
@@ -6,52 +13,39 @@ function computerPlay() {
 }
 
 function playRound(playerSelection, computerSelection) {
-    playerSelection = playerSelection.toLowerCase()
     if (playerSelection == computerSelection) {
-        console.log('Tie!');
-        return 2;
+        container.textContent = 'Tie!';
     }
-    else if (playerSelection == 'rock' && computerSelection == 'scissors') {
-        console.log(`You won! ${playerSelection} beats ${computerSelection}.`);
-        return 1;
-    }
-    else if (playerSelection == 'paper' && computerSelection == 'rock') {
-        console.log(`You won! ${playerSelection} beats ${computerSelection}.`);
-        return 1;
-    }
-    else if (playerSelection == 'scissors' && computerSelection == 'paper') {
-        console.log(`You won! ${playerSelection} beats ${computerSelection}.`);
-        return 1;
+    else if (playerSelection == 'rock' && computerSelection == 'scissors' ||
+            playerSelection == 'paper' && computerSelection == 'rock' ||
+            playerSelection == 'scissors' && computerSelection == 'paper') {
+        container.textContent = `You won! ${playerSelection} beats ${computerSelection}.`;
+        playerScore++
     }
     else {
-        console.log(`You lost! ${computerSelection} beats ${playerSelection}.`);
-        return 0;
+        container.textContent = `You lost! ${computerSelection} beats ${playerSelection}.`;
+        computerScore++
+    }
+    score.textContent = `Player score: ${playerScore} Computer score:${computerScore}`;
+    checkWinner();
+}
+
+function checkWinner() {
+    if (playerScore == 5 || computerScore == 5) {
+        if (playerScore > computerScore) {
+            container.textContent = 'GAME OVER! You beat the computer! Click any button to start again.';
+        }
+        else {
+            container.textContent = 'GAME OVER! You lost to the computer! Click any button to start again.';
+        }
+        playerScore = 0;
+        computerScore = 0;
     }
 }
 
-function game() {
-    let playerScore = 0;
-    let computerScore = 0;
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        playRound(button.id, computerPlay());
+    });
+});
 
-    for (let i = 0; i < 5; i++) {
-        let player = prompt('Rock, paper or scissors?');
-        let result = playRound(player, computerPlay());
-        if (result == 0) {
-            computerScore++
-        }
-        else if (result == 1) {
-            playerScore++
-        }
-    }
-    if (playerScore > computerScore) {
-        console.log('You beat the computer!');
-    }
-    else if(playerScore < computerScore) {
-        console.log('You lost to the computer!');
-    }
-    else {
-        console.log('Tie after 5 rounds.');
-    }
-}
-
-game();
