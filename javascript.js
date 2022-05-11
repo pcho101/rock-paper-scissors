@@ -1,4 +1,4 @@
-const choice = ['rock', 'paper', 'scissors'];
+const choice = ['sword', 'lance', 'axe'];
 let playerScore = 0;
 let computerScore = 0;
 
@@ -16,9 +16,9 @@ function playRound(playerSelection, computerSelection) {
     if (playerSelection == computerSelection) {
         container.textContent = 'Tie!';
     }
-    else if (playerSelection == 'rock' && computerSelection == 'scissors' ||
-            playerSelection == 'paper' && computerSelection == 'rock' ||
-            playerSelection == 'scissors' && computerSelection == 'paper') {
+    else if (playerSelection == 'sword' && computerSelection == 'axe' ||
+            playerSelection == 'lance' && computerSelection == 'sword' ||
+            playerSelection == 'axe' && computerSelection == 'lance') {
         container.textContent = `You won! ${playerSelection} beats ${computerSelection}.`;
         playerScore++
     }

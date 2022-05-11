@@ -1,0 +1,53 @@
+body {
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    background-color: beige;
+}
+
+h1 {
+    font-size: 56px;
+}
+
+.weapons {
+    display: flex;
+    flex: 1;
+    gap: 16px;
+    justify-content: center;
+}
+
+button {
+    width: 100px;
+    height: 100px;
+    margin: 0px 25px;
+    transition-duration: 0.4s;
+}
+
+#sword:hover {
+    background-color: red;
+    transform: scale(1.1);
+}
+
+#lance:hover {
+    background-color: blue;
+    transform: scale(1.1);
+}
+
+#axe:hover {
+    background-color: green;
+    transform: scale(1.1);
+}
+
+#sword {
+    background-image: url(images/FE16_sword_icon.webp);
+    background-size: 100% 100%;
+}
+
+#lance {
+    background-image: url(images/FE16_lance_icon.webp);
+    background-size: 100% 100%;
+}
+
+#axe {
+    background-image: url(images/FE16_axe_icon.webp);
+    background-size: 100% 100%;
+}
